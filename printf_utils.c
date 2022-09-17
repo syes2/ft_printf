@@ -1,21 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   printf_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungbae <seungbae@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 16:22:00 by seungbae          #+#    #+#             */
-/*   Updated: 2022/09/17 17:20:30 by seungbae         ###   ########seoul.kr  */
+/*   Created: 2022/09/17 14:50:20 by seungbae          #+#    #+#             */
+/*   Updated: 2022/09/17 17:20:27 by seungbae         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+static int find_format(char *str, va_list ap);
+{
 
+}
 
-#endif
+static int print_char(char c)
+{
+	write(1, &c, ,1);
+	return (1);
+}
+
+static int print_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		wirte(1, &c, 1);
+		i++;
+	}
+	return (i);
+}
+
+static int	print_hex(unsigned int num)
+{
+	int i;
+
+	i = 0;
+	while (num > 0)
+	{
+		
+	}
+}
+
+static int print_
