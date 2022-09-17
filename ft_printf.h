@@ -6,7 +6,7 @@
 /*   By: seungbae <seungbae@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 16:22:00 by seungbae          #+#    #+#             */
-/*   Updated: 2022/09/17 17:20:30 by seungbae         ###   ########seoul.kr  */
+/*   Updated: 2022/09/17 18:27:01 by seungbae         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 
+static int print_str(char *str);
+static int	print_hex(unsigned int num);
 
 #endif

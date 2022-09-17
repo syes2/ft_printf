@@ -6,7 +6,7 @@
 /*   By: seungbae <seungbae@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:51:13 by seungbae          #+#    #+#             */
-/*   Updated: 2022/09/17 17:20:28 by seungbae         ###   ########seoul.kr  */
+/*   Updated: 2022/09/17 18:26:59 by seungbae         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			len += data_type(&format, ap) - 2;
+			len += data_type(&format, ap) - 1;
 		}
 		else
 			write(1, str, 1);
@@ -35,18 +35,26 @@ int	ft_printf(const char *format, ...)
 
 static	int	data_type(const char *format, va_list ap)
 {
+	int	len;
+
+	len = 0;
 	if (*format == 'c')
-		return (print_char(va_arg(ap, int)));
+		len += print_char(va_arg(ap, int));
 	else if (*format == 's')
-		return (print_str(va_arg(ap, char*)));
+		len +=  (print_str(va_arg(ap, char*));
 	else if (*format == 'd' || *format == 'i')
-		return (print_nbr(va_arg(ap, int)));
+		len +=  (print_nbr(va_arg(ap, int));
 	else if (*format == 'x' || *format == 'X' || *format == 'u')
-		return (print_hex(va_arg(ap, unsigned int)));
+		len +=  (print_hex(va_arg(ap, unsigned int));
 	else if (*format == 'p')
-		return (print_pointer(va_arg(ap, long long)));
+		len +=  (print_pointer(va_arg(ap, long long));
 	else if (*format == '%')
-		return (print_char(*format));
-	else
-		return (-1);
+		len += write(1, %, 1);
+	return (len);
+}
+
+static int print_char(char c)
+{
+	write(1, &c, ,1);
+	return (1);
 }
