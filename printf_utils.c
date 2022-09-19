@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   printf_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungbae <seungbae@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sushu <sushu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 14:50:20 by seungbae          #+#    #+#             */
-/*   Updated: 2022/09/17 19:33:05 by seungbae         ###   ########seoul.kr  */
+/*   Updated: 2022/09/18 22:56:18 by sushu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	print_str(char *str)
+int	print_str(char *str)
 {
 	int	i;
 
@@ -21,49 +21,80 @@ static int	print_str(char *str)
 		str = "(null)";
 	while (str[i])
 	{
-		wirte(1, &c, 1);
+		write(1, &str[i], 1);
 		i++;
 	}
 	return (i);
 }
 
-static int	print_hex(unsigned int num, char c)
+int	print_hex(unsigned int num, char c)
 {
 	int	len;
 
 	len = 0;
-	while (num <= 0)
+	if (num >= 16)
 	{
-		if (num >= 16)
-		{
-			len += print_hex(num / 16);
-			len += print_hex(num % 16);
-		}
+		len += print_hex(num / 16, c);
+		len += print_hex(num % 16, c);
+	}
+	else
+	{
+		if (num < 10)
+			len += print_char(num + '0');
 		else
 		{
-			if (num < 10)
-				len += print_char(num + '0');
-			else
-				len += print_char(num + 'A');
+			if (c == 'X')
+				len += print_char(num + 55);
+			if (c == 'x')
+				len += print_char(num + 87);
 		}
 	}
 	return (len);
 }
 
-static int	print_nbr(int num)
+int	print_nbr(int num)
+{
+	int	len;
+	long long nb;
+
+	nb = num;
+	len = 0;
+	if (num < 0)
+	{
+		len += print_char('-');
+		nb *= -1;
+	}
+	if (nb < 10)
+		len += print_char(nb + '0');
+	else
+	{
+		len += print_nbr(nb / 10);
+		len += print_nbr(nb % 10);
+	}
+	return (len);
+}
+
+int	print_unb(unsigned int num)
 {
 	int	len;
 
 	len = 0;
-	while (num <= 0)
+	if (num >= 10)
 	{
-		if (num >= 10)
-		{
-			len += print_nbr(num / 10);
-			len += print_nbr(num % 10);
-		}
-		else
-			len += print_char(num + '0');
+		len += print_unb(num / 10);
+		len += print_unb(num % 10);
 	}
+	if (num < 10)
+		len += print_char(num + '0');
+	return (len);
+}
+
+int print_ptr(unsigned long long num)
+{
+	int	len;
+
+	len = 0;
+	len += print_str("0x");
+	len += print_hex(num, 'x');
 	return (len);
 }

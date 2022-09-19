@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seungbae <seungbae@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: sushu <sushu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/14 16:20:58 by seungbae          #+#    #+#              #
-#    Updated: 2022/09/17 18:27:05 by seungbae         ###   ########seoul.kr   #
+#    Updated: 2022/09/18 16:27:22 by sushu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	libftprintf.a
-SRC         :=      ft_printf.c printf_utils.c printf_utils2.c
+SRC         :=      ft_printf.c printf_utils.c
 OBJ			:=	$(SRC:.c=.o)
 
 CFLAGS		:=	-Wall -Wextra -Werror
