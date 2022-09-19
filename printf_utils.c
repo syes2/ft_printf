@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sushu <sushu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: seungbae <seungbae@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 14:50:20 by seungbae          #+#    #+#             */
-/*   Updated: 2022/09/18 22:56:18 by sushu            ###   ########.fr       */
+/*   Updated: 2022/09/19 13:21:39 by seungbae         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	print_hex(unsigned int num, char c)
 
 int	print_nbr(int num)
 {
-	int	len;
-	long long nb;
+	int			len;
+	long long	nb;
 
 	nb = num;
 	len = 0;
@@ -89,12 +89,22 @@ int	print_unb(unsigned int num)
 	return (len);
 }
 
-int print_ptr(unsigned long long num)
+int	print_ptr(unsigned long long num)
 {
 	int	len;
 
 	len = 0;
-	len += print_str("0x");
-	len += print_hex(num, 'x');
+	if (num >= 16)
+	{
+		len += print_ptr(num / 16);
+		len += print_ptr(num % 16);
+	}
+	else
+	{
+		if (num < 10)
+			len += print_char(num + '0');
+		else
+			len += print_char(num + 87);
+	}
 	return (len);
 }
