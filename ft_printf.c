@@ -6,7 +6,7 @@
 /*   By: seungbae <seungbae@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:51:13 by seungbae          #+#    #+#             */
-/*   Updated: 2022/09/19 15:13:34 by seungbae         ###   ########seoul.kr  */
+/*   Updated: 2022/09/19 21:18:59 by seungbae         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,5 @@ int	type_check(const char type, va_list *ap)
 
 int	print_char(char c)
 {
-	write(1, &c, 1);
-	return (1);
+	return (write(1, &c, 1));
 }

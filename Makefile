@@ -3,35 +3,37 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sushu <sushu@student.42.fr>                +#+  +:+       +#+         #
+#    By: seungbae <seungbae@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/14 16:20:58 by seungbae          #+#    #+#              #
-#    Updated: 2022/09/18 16:27:22 by sushu            ###   ########.fr        #
+#    Updated: 2022/09/19 21:18:46 by seungbae         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:=	libftprintf.a
-SRC         :=      ft_printf.c printf_utils.c
-OBJ			:=	$(SRC:.c=.o)
+NAME = libftprintf.a
+cc = gcc
+CFLAGS = -Wall -Wextra -Werror
 
-CFLAGS		:=	-Wall -Wextra -Werror
+SRCS = \
+	  ft_printf.c \
+	  printf_utils.c \
 
-OBJECTS = $(OBJ)
+OBJS = $(SRCS:.c=.o)
 
-.PHONY:		all clean fclean re
+all: $(NAME)
 
-all:		$(NAME)
+$(NAME): $(OBJS)
 
-$(NAME):	$(OBJECTS)
-	ar -rc $@ $^
-
-*.o:		*.c
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $^
+	ar crsu $(NAME) $@
 
 clean:
-	@rm -f $(OBJ)
+	rm -f $(OBJS)
 
-fclean:		clean
-	@rm -f $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
-re:			fclean all
+re: clean all
+
+.PHONY: all clean fclean re
